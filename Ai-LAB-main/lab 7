@@ -1,0 +1,19 @@
+% Step 1: Define Facts and Rules 
+% Facts 
+is_a(dog, mammal). 
+is_a(mammal, animal). 
+is_a(cat, mammal). 
+% Rules 
+is_a(X, animal) :- is_a(X, mammal). 
+is_a(X, mammal) :- is_a(X, dog). 
+% Step 2: Define Backward Chaining Predicate 
+backward_chain(Goal) :- 
+% Check if the goal is already a fact 
+Goal. 
+backward_chain(Goal) :- 
+% If the goal is not a fact, check if it can be derived from rules 
+Rule, 
+backward_chain(Rule). 
+% Step 3: Query the Backward Chaining Predicate 
+% Example query: Is a cat an animal? 
+% Query: backward_chain(is_a(cat, animal))

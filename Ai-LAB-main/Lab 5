@@ -1,0 +1,25 @@
+% Facts: Define family relationships 
+parent(john, jim). 
+parent(john, sara). 
+parent(jane, jim). 
+parent(jane, sara). 
+parent(bob, john). 
+parent(bob, lisa). 
+parent(lisa, ann). 
+% Rules: Define additional relationships using facts 
+grandparent(X, Z) :- 
+ parent(X, Y), 
+ parent(Y, Z). 
+sibling(X, Y) :- 
+ parent(Z, X), 
+ parent(Z, Y), 
+ X \= Y. % X and Y are not the same person 
+% Query examples: 
+% - Who are the children of Jane? 
+% Query: parent(jane, Child). 
+% 
+% - Who are the siblings of Jim? 
+% Query: sibling(jim, Sibling). 
+% 
+% - Who are the grandparents of Ann? 
+% Query: grandparent(Grandparent, ann)
